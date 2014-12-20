@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit 
+    colors="true" 
+    stopOnFailure="false" 
+    bootstrap="bootstrap.php"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+>
+    
+    <testsuites>
+      
+        <testsuite name="servicesTests">
+            <directory suffix=".php">Services</directory>
+        </testsuite> 
+         <testsuite name="storageTests">
+            <directory suffix=".php">Storage</directory>
+        </testsuite>         
+               
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+        
+            <directory suffix=".php">../Services</directory>
+             <directory suffix=".php">../Storage</directory>
+       
+       
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="build/report" charset="UTF-8"
+            highlight="true" lowUpperBound="25" highLowerBound="90"/>
+    </logging>
+
+</phpunit>
