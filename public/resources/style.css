@@ -1,0 +1,99 @@
+
+
+
+
+
+
+
+.navbar-header a{
+    color:#fff;
+}
+
+
+
+.input-error
+{
+  
+   width:100px;
+   height: 100px;
+   margin-top: 50px;
+    background-color: #269abc;
+}
+#heading
+{
+ border-bottom :dotted 3px mediumvioletred;
+
+}
+
+#message{
+    margin-bottom: 25px;
+}
+.navbar-header{
+    width:100%;
+}
+.container-fluid{
+    width:100%;
+}
+
+
+
+
+.training-detail h2
+{
+    border-bottom:dotted 1px #000;
+}
+.training-error
+{
+  
+ 
+}
+.training-error p
+{
+   
+}
+.traininglist-box{
+    padding-top: 15px;
+    margin-left: 25px;
+    color:#000;
+    
+    
+}
+.traininglist-heading h2{
+    color:#000;
+}
+.password_reset_section
+{
+    margin:auto; 
+  margin-top:50px;
+   color: #000;
+   border:solid 1px  mediumvioletred;
+   border-radius: 14px; 
+   width:930px;
+   min-height:500px;
+   background-color: rgb(219, 209, 226);
+}
+.table-contents
+{
+    background-color: #fff;
+    color: #000;
+}
+.icon-zoom-in
+{
+  position:relative;
+  left:23px;
+  top:-8px;
+  z-index:999;
+}
+.input-append input
+{
+  height:30px;
+  padding-left:25px;
+}
+#name-search-box
+{   
+    color:#fff;
+    background-color: #000;
+    width: 200px;
+   display:none;
+   
+}

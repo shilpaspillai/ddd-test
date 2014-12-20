@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/controllers/UserController.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/views/admin/admin_dashboard.blade.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/migrations/2014_12_10_111353_add_signup_into_users.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/lib/Domain/ValueObjects/User/surname.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/migrations/2014_11_25_093816_add_column_to_users.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/views/admin/user_registeration.blade.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/migrations/2014_11_20_120539_create_book_table.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/lib/Domain/Factory/user/Factory.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/lib/Domain/ValueObjects/User/role.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/migrations/2014_11_28_130630_add_column_surname.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/seeds/BookTableSeeder.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/controllers/HomeController.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/seeds/UserTableSeeder.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/lib/Domain/ValueObjects/User/firstname.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/lib/Storage/Repository/User/Repository.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/migrations/2014_11_20_115221_create_user_table.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/models/Signup_detail.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/database/migrations/2014_12_10_115906_add_foreignkey_into_signup.php</file>
+            <file>file:/D:/xampp/htdocs/project-library/books/app/lib/Services/ApplicationServices/UserService.php</file>
+        </group>
+    </open-files>
+</project-private>
