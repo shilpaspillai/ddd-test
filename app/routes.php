@@ -17,6 +17,7 @@ Route::get('/', function()
 });
 
 //common routes for admin and user
+Route::match(array('get','post'),'/',array('as'=>'login','uses'=>'userController@show_login_page'));
 Route::match(array('get','post'),'/login',array('as'=>'login','uses'=>'userController@show_login_page'));
 Route::match(array('get','post'),'/process_login',array('as'=>'login_processLogin','uses'=>'userController@process_login_page'));
 Route::match(array('get','post'),'/logout',array('as'=>'signout','uses'=>'userController@logout'));
