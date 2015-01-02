@@ -199,33 +199,63 @@ class UserController extends BaseController {
     }
     public function set_profile_picture()
     {
-       $uid = Session::get('id');
-           $mimetype=Input::file('image')->getClientMimeType();
+            $uid = Session::get('id');
+             $role = Session::get('role');
+            $mimetype=Input::file('image')->getClientMimeType();
             $type=explode("/",$mimetype);
-         
             if($type[0] == 'image')
             {
             $filename=date('dmYHis').Input::file('image')->getClientOriginalName();
             $path=Input::file('image')->move(ROOT_PATH.'/assets/upload/',$filename);
             $result=$this->user_service->set_profile_picture($filename,$uid);
-            if($result)
-            {$pic_data=$this->user_service->display_profile_picture($uid);
-                $role = Session::get('role');
-                if($role != 1)
-//                { return View::make('user.profile')->with('data', $pic_data);}
-                {self::display_user_profile();}
-                else{display_admin_profile(); }
-//                else{return View::make('admin.admin_dashboard')->with('data', $pic_data);}
-//            return Redirect::route('userdashboard')->with('data',$pic_data);
-            }  
-          else{return Redirect::route('userdashboard')->with('message','profile picture upload failed');}
-//                return View::make('user.profile')->with('message','profile picture upload successfully');}
-//            else{return View::make('user.profile')->with('message','profile picture upload successfully'); }
-            }
-          return Redirect::route('userdashboard')->with('message','use image file only');
             
+                 if($role != 1)
+                 {
+                     if($result){ return self::display_user_profile();}
+                     else{return Redirect::route('userdashboard')->with('message','profile picture upload failed');}
+                 }
+                 else 
+                 {
+                    if($result){ return self::display_admin_profile();}  
+                    else {return Redirect::route('show_admin_profile')->with('message','profile picture upload failed');}
+                 }
+            }
+            else
+            {
+            if($role != 1)
+              {return Redirect::route('userdashboard')->with('message','use image file only');}
+            else{return Redirect::route('show_admin_profile')->with('message','use image file only');}
+              }
     }
 
-}
+    public function delete_profile_picture($id)
+    {
+        $uid = $id;
+        $result = $this->user_service->delete_profile_picture($uid); 
+        $role = Session::get('role');
+        if($role != 1)
+            {if($result)
+                {
+                { return self::display_user_profile();}
+                }
+            else{
+                return Redirect::route('userdashboard')->with('message','delete operation  failed');
+                }
+            }
+        else{
+               if($result)
+                {
+                {return self::display_admin_profile();}
+                }
+                else
+                 {return Redirect::route('show_admin_profile')->with('message','delete operation  failed');
+                 }
+            }
+    } 
+        
+      
+    }
+
+
 ?>
 

@@ -103,6 +103,12 @@ class UserService{
         return(($result) ? $result :FALSE);
     }
     
+    public function delete_profile_picture($uid)
+    {
+         $result =$this->user_repo->delete_profile_picture($uid);
+        return(($result) ? $result :FALSE);    
+    }
+    
     }
 
 ?>

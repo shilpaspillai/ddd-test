@@ -15,8 +15,8 @@
         <div class="table-contents">
             <div class="col-md-6 col-md-offset-3"><h2> User List</h2></div>
             <div class="col-md-6 col-md-offset-3"> 
-                {{ Form::open(array('name'=>'listuser','novalidate'=>'')) }}
-                <script>
+                {{ Form::open(array('name'=>'listuser','novalidate'=>''))}}
+              <script>
                     $(document).ready(function() {
                         $("[name=report]").click(function() {
                             var id = $(this).attr('data-id');
@@ -43,7 +43,7 @@
                     foreach ($users as $row) {
                         ?>
                         <tr>
-                           <td>{{$row -> username}}</td>
+                            <td>{{$row -> username}}</td>
                             <td>{{$row -> email}} </td>
                             <td> 
                                 <button type="button" id="report" name="report" class="btn btn-info btn-sm" data-id="<?php echo $row->id; ?>"> <span class="glyphicon glyphicon-file"></span>&nbsp;Report</button>&nbsp;

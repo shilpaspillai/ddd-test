@@ -9,42 +9,32 @@
     <table  class="table table-striped">
     <thead>
     <tr>
-    <th width="400">Date</th>
-    <th width="400">Signin Time</th>
-    <th width="400">Signout Time</th>
-    <th width="400">Total</th>
+     <th width="400">Date</th>
+     <th width="400"> Working Hours </th>
     </tr>
     </thead>
-          <?php 
-          $hours=0;
-          $total=0;
-                    if(isset($user_data)){
-                          foreach($user_data as $user){
-                              if($user->signout == NULL){$time = 0;}
-                              else{
-                                  $time_signin = strtotime($user->signin);
-                                  $time_signout = strtotime($user->signout);
-                                  $time = ($time_signout - $time_signin)/60;
-                                 $total += $time;
-                                 $hours += floor($time/60);
-                                }
-                    ?>
-    <tr><td> <?php 
-      if($user->signin != NULL){$signin_date = explode(" ",$user->signin); echo $signin_date[0];}else{echo "---";}
-    ?> </td>
-        <td>
-        <?php if($user->signin != NULL) {$signin_time = explode(" ",$user->signin); echo($signin_time[1]);}else{echo "---" ;}?>
+       <?php 
+           $total = 0;
+           $hours =0;
+           $time=0;
+       if(isset($user_data)){
+                        foreach($user_data as $user){
+          ?>
+    
+        <td width="400">
+          <?php echo $user->dw;?>
         </td>
-        <td>
-        <?php if($user->signout != NULL){$signout_time = explode(" ",$user->signout); echo($signout_time[1]);}else{echo "---" ;}?>
-        </td>
-        <td>
-        <?php echo ceil($time); ?>
+        <td width="400">
+            <?php 
+             $time=($user->timewrked);
+             $total += $time/60;
+             $current_date_wkng_time =floor(($user->timewrked)/(60));
+             $hours += floor($time/(60*60));
+            echo  $current_date_wkng_time." M";?>
         </td>
         </tr>
         <?php }}?>
-        <tr><td><b>TOTAL</b></td> <td><?php if($hours >= 0)
-        {echo " <b>$hours H ".($total-($hours*60))." M</b>";}else{echo "---";}?></td></tr>
+        <tr> <th width="400">Total working Hours </th><td><?php if($hours >= 0){echo $hours." H ";echo ($total-($hours*60))." M ";}else{echo "----" ;}?></td></tr>
         </table>
         <div class="modal-footer">
         </div></div></div></div></div>

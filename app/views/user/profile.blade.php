@@ -180,7 +180,6 @@ echo $name; ?> <b class="caret"></b></a>
                             <i class="fa fa-dashboard"></i>
                             <div class="display-content" id="display-signin-content" style="display:none;color:black; font-size:21px;"> <p> <em>Welcome!!! your entry time:</em></p> </div>
                             <div class="display-signout-content" id="display-signout-content" style="display:none;color:black; font-size:21px;"> <p> <em>Thank you!!! your exit time:</em></p> </div>
-
                             <div class="display-time" id="display-time" style="display: none;background-color:green;color:black;">
                             </div>
                         </li>
@@ -200,20 +199,23 @@ echo $name; ?> <b class="caret"></b></a>
             
                         
                        <?php 
-                        echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px;\"></span></div>";}
+                        echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px; padding-left:25px;\"></span></div>";}
                         ?>
                
                  <div class="profile_picture_upload_section">
-                 {{Form::label("Change Your profile picture::",'')}}
+                {{Form::label("Change Your profile picture::",'')}}
                 {{Form::file('image')}}
-                {{Form::button("Upload",array('class'=>'btn btn-success','type'=>'submit'))}}
+                {{Form::button(" Upload",array('class'=>'btn btn-success btn-sm glyphicon glyphicon-upload','type'=>'submit'))}}
+                       <?php   $uid =Session::get('id'); ?>
+  <a href="{{URL::to('admin/user/profile_picture/delete')}}/<?php echo $uid; ?>"><button type="button"  class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;&nbsp;Delete</button></a>&nbsp;
                  </div>  
-     
                     <?php  
                     $message = Session::get('message');
-                    if(isset($message)) echo "<div class=\"alert-success\">" .$message."</div>";
+                    if(isset($message)) echo "<div class=\"alert-danger\">" .$message."</div>";
                     ?>
                {{Form::close()}}
+       
+
                 </div> 
                 </div>
             </div>
@@ -222,10 +224,10 @@ echo $name; ?> <b class="caret"></b></a>
             <ul class="nav navbar-nav side-nav">
                 <li>
                     <div class="display-signin <?php if(isset($user_data)) {if ($user_data['status']) { ?>hide<?php }} ?>"  id="display-signin">
-                        <button type="submit" id="signin"  class="btn btn-block btn-success"> Signin.</button>
+                        <button type="submit" id="signin"  class="btn btn-block btn-success"> Time in.</button>
                     </div>
                     <div class="display-signout <?php if(isset($user_data)){if(!$user_data['status']){?>hide<?php }}  ?>" id="display-signout">
-                         <button type="submit" id="signout"  class="btn  btn-block btn-danger"> Signout.</button>
+                         <button type="submit" id="signout"  class="btn  btn-block btn-danger"> Time out.</button>
                     </div>
                 </li>
             </ul>

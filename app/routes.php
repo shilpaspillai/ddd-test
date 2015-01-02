@@ -31,6 +31,7 @@ Route::match(array('get','post'),'admin/user/report/{id}',array('before'=>'auth|
 Route::match(array('get','post'),'/admin/list/users',array('before'=>'auth|admin_role','as'=>'list_all_users','uses'=>'userController@display_user_list'));
 Route::match(array('get','post'),'admin/user/update/{id}',array('before'=>'auth|admin_role','as'=>'update_user_data','uses'=>'userController@update_user_data'));
 Route::match(array('get','post'),'admin/user/search',array('as'=>'search_by_name','uses'=>'userController@search_by_name'));
+Route::match(array('get','post'),'admin/user/profile_picture/delete/{id}',array('as'=>'delete_user_profile_picture','uses'=>'userController@delete_profile_picture'));
 
 //user routes
 Route::match(array('get','post'),'/user/signin',array('as'=>'get_signin_time','uses'=>'userController@process_signin'));

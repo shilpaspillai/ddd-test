@@ -37,6 +37,9 @@ interface RepositoryInterface {
     public static function set_profile_picture($filename,$uid);
     
     public static function display_profile_picture($uid);
+    
+    
+    public static function delete_profile_picture($uid);
 }
 ?>
 

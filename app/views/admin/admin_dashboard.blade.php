@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Welcome <small>admin</small>
+                    Welcome <small><?php $name = Session::get('firstname'); echo $name; ?></small>
                 </h1>
                                 
 <div class="row">
@@ -19,30 +19,24 @@
                               echo ">";
                               echo "</div>";
                         }else{?>
-            
-                        
                        <?php 
-                        echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px;\"></span></div>";}
+                        echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px; padding-left:25px;\"></span></div>";}
                         ?>
                
                  <div class="profile_picture_upload_section">
                  {{Form::label("Change Your profile picture::",'')}}
                 {{Form::file('image')}}
-                {{Form::button("Upload",array('class'=>'btn btn-success','type'=>'submit'))}}
+                {{Form::button(" Upload",array('class'=>'btn btn-success btn-sm glyphicon glyphicon-upload','type'=>'submit'))}}
+          <?php   $uid =Session::get('id'); ?>
+  <a href="{{URL::to('admin/user/profile_picture/delete')}}/<?php echo $uid; ?>"><button type="button"  class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;&nbsp; Delete</button></a>&nbsp;
                  </div>  
-     
                     <?php  
                     $message = Session::get('message');
-                    if(isset($message)) echo "<div class=\"alert-success\">" .$message."</div>";
+                    if(isset($message)) echo "<div class=\"alert-danger\">" .$message."</div>";
                     ?>
               {{Form::close()}}
         </div> </div>
- 
                 <ol class="breadcrumb">
-                    <li class="active">
-                        <i class="fa fa-dashboard"></i> Dashboard
-                    </li>
-
                 </ol>
             </div>
        
