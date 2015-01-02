@@ -92,6 +92,17 @@ class UserService{
       $result =  $this->user_repo->generate_user_report($id);
        return(($result) ? $result :FALSE);
     }
+    public function set_profile_picture($filename,$uid)
+    {
+        $result = $this->user_repo->set_profile_picture($filename,$uid);
+           return(($result) ? $result :FALSE);
+    }
+    public function display_profile_picture($uid)
+    {
+        $result =$this->user_repo->display_profile_picture($uid);
+        return(($result) ? $result :FALSE);
+    }
+    
     }
 
 ?>

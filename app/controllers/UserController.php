@@ -88,7 +88,9 @@ class UserController extends BaseController {
     }
 
     public function display_admin_profile() {
-        return View::make('admin.admin_dashboard');
+         $uid = Session::get('id');
+        $pro_pic_data= $this->user_service->display_profile_picture($uid);
+        return View::make('admin.admin_dashboard')->with('data',$pro_pic_data);;
     }
 
     public function display_user_profile() {
@@ -100,8 +102,8 @@ class UserController extends BaseController {
         } else {
             $data = array('status' => false);
         }
-
-        return View::make('user.profile')->with('user_data', $data);
+        $pro_pic_data= $this->user_service->display_profile_picture($uid);
+        return View::make('user.profile')->with('user_data', $data)->with('data',$pro_pic_data);
     }
 
     public function process_signin() {
@@ -194,6 +196,34 @@ class UserController extends BaseController {
         $data = $this->user_service->generate_user_report($id);
         $result = $this->user_service->get_user_detail_by_id($uid);
         return View::make('admin.generate_user_report')->with('user_data', $data)->with('user_detail', $result);
+    }
+    public function set_profile_picture()
+    {
+       $uid = Session::get('id');
+           $mimetype=Input::file('image')->getClientMimeType();
+            $type=explode("/",$mimetype);
+         
+            if($type[0] == 'image')
+            {
+            $filename=date('dmYHis').Input::file('image')->getClientOriginalName();
+            $path=Input::file('image')->move(ROOT_PATH.'/assets/upload/',$filename);
+            $result=$this->user_service->set_profile_picture($filename,$uid);
+            if($result)
+            {$pic_data=$this->user_service->display_profile_picture($uid);
+                $role = Session::get('role');
+                if($role != 1)
+//                { return View::make('user.profile')->with('data', $pic_data);}
+                {self::display_user_profile();}
+                else{display_admin_profile(); }
+//                else{return View::make('admin.admin_dashboard')->with('data', $pic_data);}
+//            return Redirect::route('userdashboard')->with('data',$pic_data);
+            }  
+          else{return Redirect::route('userdashboard')->with('message','profile picture upload failed');}
+//                return View::make('user.profile')->with('message','profile picture upload successfully');}
+//            else{return View::make('user.profile')->with('message','profile picture upload successfully'); }
+            }
+          return Redirect::route('userdashboard')->with('message','use image file only');
+            
     }
 
 }

@@ -49,6 +49,7 @@
     });
 </script>
 <div id="wrapper">
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -162,21 +163,9 @@ echo $name; ?> <b class="caret"></b></a>
                 </ul>
             </li>
         </ul>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <div class="display-signin <?php if ($user_data['status']) { ?>hide<?php } ?>"  id="display-signin">
-                        <button type="submit" id="signin" class="btn btn-block btn-success">Welcome !! Click here for Signin.</button>
-                    </div>
-                    <div class="display-signout <?php if (!$user_data['status']) { ?>hide<?php } ?>" id="display-signout">
-                        <button type="submit" id="signout" class="btn  btn-block btn-danger">Thank you !! Click here for Signout.</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
     </nav>
+    
+    
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -193,96 +182,54 @@ echo $name; ?> <b class="caret"></b></a>
                             <div class="display-signout-content" id="display-signout-content" style="display:none;color:black; font-size:21px;"> <p> <em>Thank you!!! your exit time:</em></p> </div>
 
                             <div class="display-time" id="display-time" style="display: none;background-color:green;color:black;">
-
                             </div>
                         </li>
                     </ol>
                 </div>
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-info alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out  for additional features!
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                    </div>
+                <div class='col-md-6'>
+                {{Form::open(array('name'=>'profile_picture','route'=>'set_user_profile_picture','novalidate'=>'','files'=>true))}}
+              
+                        <?php if(isset($data) && $data){
+                              echo "<div class=\"profile_picture_section\">
+                        <img src=".URL::to('/assets/upload/')."/".$data;
+                              echo ">";
+                              echo "</div>";
+                        }else{?>
+            
+                        
+                       <?php 
+                        echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px;\"></span></div>";}
+                        ?>
+               
+                 <div class="profile_picture_upload_section">
+                 {{Form::label("Change Your profile picture::",'')}}
+                {{Form::file('image')}}
+                {{Form::button("Upload",array('class'=>'btn btn-success','type'=>'submit'))}}
+                 </div>  
+     
+                    <?php  
+                    $message = Session::get('message');
+                    if(isset($message)) echo "<div class=\"alert-success\">" .$message."</div>";
+                    ?>
+               {{Form::close()}}
+                </div> 
                 </div>
- 
             </div>
         </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <div class="display-signin <?php if(isset($user_data)) {if ($user_data['status']) { ?>hide<?php }} ?>"  id="display-signin">
+                        <button type="submit" id="signin"  class="btn btn-block btn-success"> Signin.</button>
+                    </div>
+                    <div class="display-signout <?php if(isset($user_data)){if(!$user_data['status']){?>hide<?php }}  ?>" id="display-signout">
+                         <button type="submit" id="signout"  class="btn  btn-block btn-danger"> Signout.</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
         @stop
 

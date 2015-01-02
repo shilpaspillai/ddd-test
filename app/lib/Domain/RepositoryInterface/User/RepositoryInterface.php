@@ -33,6 +33,10 @@ interface RepositoryInterface {
     public static function check_already_signin($uid);
     
     public static function generate_user_report($id);
+    
+    public static function set_profile_picture($filename,$uid);
+    
+    public static function display_profile_picture($uid);
 }
 ?>
 

@@ -43,7 +43,7 @@
                     foreach ($users as $row) {
                         ?>
                         <tr>
-                            <td>{{$row -> username}}</td>
+                           <td>{{$row -> username}}</td>
                             <td>{{$row -> email}} </td>
                             <td> 
                                 <button type="button" id="report" name="report" class="btn btn-info btn-sm" data-id="<?php echo $row->id; ?>"> <span class="glyphicon glyphicon-file"></span>&nbsp;Report</button>&nbsp;

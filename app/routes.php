@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
 
 //common routes for admin and user
 Route::match(array('get','post'),'/',array('as'=>'login','uses'=>'userController@show_login_page'));
@@ -39,6 +35,7 @@ Route::match(array('get','post'),'admin/user/search',array('as'=>'search_by_name
 //user routes
 Route::match(array('get','post'),'/user/signin',array('as'=>'get_signin_time','uses'=>'userController@process_signin'));
 Route::match(array('get','post'),'/user/signout',array('as'=>'get_signout_time','uses'=>'userController@process_signout'));
+Route::match(array('get','post'),'/user/profile_picture',array('as'=>'set_user_profile_picture','uses'=>'userController@set_profile_picture'));
 Route::get('/user/dashboard',array('before'=>'auth|user_role','as'=>'userdashboard','uses'=>'userController@display_user_profile'));
 
 

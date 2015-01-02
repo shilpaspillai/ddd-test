@@ -165,6 +165,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+      
         @yield('content')
         @yield('sidebar') 
         <!-- /.container-fluid -->
