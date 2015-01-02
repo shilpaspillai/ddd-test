@@ -16,7 +16,7 @@
                 $(this).hide();
             });
             var form_obj = new form();
-      
+  
             $("[name=email]").each(function() {
                 form_obj.is_valid_field($(this).val(), $("#alert_email_error"), 'please enter the email', form_obj.show_error);
                 form_obj.is_valid_email(this, $("#alert_email_error"), 'please enter a valid email', form_obj.show_error);

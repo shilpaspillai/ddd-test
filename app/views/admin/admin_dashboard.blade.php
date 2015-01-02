@@ -12,7 +12,6 @@
 <div class="row">
                 <div class="col-md-6">
                    {{Form::open(array('name'=>'profile_picture','route'=>'set_user_profile_picture','novalidate'=>'','files'=>true))}}
-              
                         <?php if(isset($data) && $data){
                               echo "<div class=\"profile_picture_section\">
                         <img src=".URL::to('/assets/upload/')."/".$data;
@@ -39,13 +38,11 @@
                 <ol class="breadcrumb">
                 </ol>
             </div>
-       
                 </div>
         </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-
             </div>
         </div>
         <!-- /.row -->
