@@ -38,8 +38,13 @@ interface RepositoryInterface {
     
     public static function display_profile_picture($uid);
     
-    
     public static function delete_profile_picture($uid);
+    
+    public static function check_email_exist_by_forget_password($email);
+    
+    public static function is_valid_token($password_reset_token);
+    
+    public static function  process_password_reset_section($password,$reset_token);
 }
 ?>
 

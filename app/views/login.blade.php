@@ -49,7 +49,9 @@
         {{Form::password('password',array('class'=>'form-control','id'=>'password'))}}
         <span id="alert_password_error" class="label label-danger" style="display:none; background-color: red;"></span>
   </div> <div> {{Form::button("Log In",array('class'=>'btn btn-success center-block','type'=>'submit'))}}</div>
-
+  <a href="{{ URL::route('forget_password')}}">Forgot your password?</a>  
+     <?php   $message = Session::get('message');
+   if($message) echo "<div class=\"alert-danger\">" .$message."</div>";?>
   </div></div>
    {{Form::Close()}}
 @stop

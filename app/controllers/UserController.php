@@ -141,6 +141,7 @@ class UserController extends BaseController {
             'surname' => Input::get('sur_name'),
             'email' => Input::get('email'),
             'password' => Input::get('usrpassword'),
+            'password_reset_token' => substr(md5(rand(9,9999)),0,8).'-'.substr(md5(rand(9,9999)),3,4).'-'.substr(md5(rand(9,9999)),6,4),
             'role' => 2
         );
 
@@ -251,10 +252,57 @@ class UserController extends BaseController {
                  {return Redirect::route('show_admin_profile')->with('message','delete operation  failed');
                  }
             }
-    } 
-        
-      
     }
+    public function show_forget_password_page()
+    {
+        return View::make('forget_password');
+    }
+     public function check_email_exist_by_forget_password()
+     {
+        if($_GET['cemail'])
+        {
+            $email =$_GET['cemail'];
+            $result=$this->user_service->check_email_exist_by_forget_password($email);
+            ob_clean();
+                if($result)
+                {$result_set=array('status'=>true,'message' => 'email is valid','password_reset_link' => "<a href=\"".URL::to('forget_password/reset/'.$result->password_reset_token)."\"> <h4>click here to reset password</h4></a>");
+                die(json_encode($result_set));}
+                else
+                {$result_set=array('status'=>false,'message' => 'email is Invalid');
+                die(json_encode($result_set));}
+        }
+        else 
+        {return Redirect::Route('login')->with('message', 'process failed. contact Admin');}
+    }
+    
+    public function reset_forget_password_section($password_reset_token)
+    {
+      $result = $this->user_service->is_valid_token($password_reset_token);
+      if($result)
+      {$token = $password_reset_token;
+      return View::make('password_reset')->with('token',$token);}
+      else{return Redirect::route('login')->with('message','unknown error contact admin');}
+    }
+    
+    public function process_password_reset()
+    {
+    $password = Input::get('usrpassword'); 
+    $reset_token = Input::get('token');
+   $result = $this->user_service->is_valid_token($reset_token);
+    if($result)
+    {
+      $hash_password =  $this->user_service->get_hashed_password($password);
+     
+     $result_set = $this->user_service->process_password_reset_section($hash_password->password,$reset_token);}
+     if($result_set)
+     {
+        return Redirect::route('login')->with('message','password updated successfully! try with new credential'); 
+     }
+    else{
+      return Redirect::route('login')->with('message','unknown error contact admin');  
+     }
+    }
+}
 
 
 ?>

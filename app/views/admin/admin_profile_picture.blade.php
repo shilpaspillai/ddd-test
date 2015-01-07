@@ -9,20 +9,16 @@
                               echo ">";
                               echo "</div>";
                         }else{?>
-            
-                        
                        <?php 
                         echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px;\"></span></div>";}
                         ?>
-               
                  <div class="profile_picture_upload_section">
                  {{Form::label("Change Your profile picture::",'')}}
                 {{Form::file('image')}}
                 {{Form::button("Upload",array('class'=>'btn btn-success','type'=>'submit'))}}
                  </div>  
-     
                     <?php  
-                    $message = Session::get('message');
+                    $message=Session::get('message');
                     if(isset($message)) echo "<div class=\"alert-success\">" .$message."</div>";
                     ?>
                 {{Form::close()}}

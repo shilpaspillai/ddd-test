@@ -8,7 +8,6 @@
                 <h1 class="page-header">
                     Welcome <small><?php $name = Session::get('firstname'); echo $name; ?></small>
                 </h1>
-                                
 <div class="row">
                 <div class="col-md-6">
                    {{Form::open(array('name'=>'profile_picture','route'=>'set_user_profile_picture','novalidate'=>'','files'=>true))}}
@@ -21,7 +20,6 @@
                        <?php 
                         echo "<div class=\"profile_picture_section\"> <span class=\"glyphicon glyphicon-user\" style=\"font-size:150px; padding-left:25px;\"></span></div>";}
                         ?>
-               
                  <div class="profile_picture_upload_section">
                  {{Form::label("Change Your profile picture::",'')}}
                 {{Form::file('image')}}
@@ -53,7 +51,6 @@
         <div class="col-lg-3 col-md-6">
         </div>
         <div class="col-lg-3 col-md-6">
-
         </div>
         <div class="col-lg-3 col-md-6">
         </div>

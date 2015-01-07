@@ -33,11 +33,11 @@ class UserService{
      $user_config['firstname'] = new UserValueObjects\firstname($config['firstname']);
      $user_config['surname'] = new UserValueObjects\surname($config['surname']);
      $user_config['role'] =new UserValueObjects\role($config['role']);
+     $user_config['password_reset_token'] =new UserValueObjects\password_reset_token($config['password_reset_token']);
      $user_entity = Userfactory::create($user_config);
      $response=$this->user_repo->create($user_entity);
      return(($response)?TRUE:FALSE);
     }
-    
     public function update_user_detail($config)
     {
     $user_entity = $this->user_repo->find_user_detail($config['current_id']);
@@ -107,6 +107,32 @@ class UserService{
     {
          $result =$this->user_repo->delete_profile_picture($uid);
         return(($result) ? $result :FALSE);    
+    }
+    
+    public function check_email_exist_by_forget_password($email)
+    {
+        $result =$this->user_repo->check_email_exist_by_forget_password($email);
+        return(($result) ? $result :FALSE);    
+    }
+    
+    public function is_valid_token($password_reset_token)
+    {
+        $result = $this->user_repo->is_valid_token($password_reset_token);
+        if($result){return TRUE;}
+        else{throw new Exceptions\TokenNotValidException();}
+    }
+    
+    public function process_password_reset_section($hash_password,$reset_token)
+    {
+       $result = $this->user_repo->process_password_reset_section($hash_password,$reset_token);
+         return(($result)? $result : FALSE);
+    }
+    
+    public function get_hashed_password($password)
+    {
+        $config['password'] =$password;
+     $user_config['password'] =  new UserValueObjects\Password(UserValueObjects\Password::encrypt($config['password']));  
+       return  $user_config['password'];
     }
     
     }

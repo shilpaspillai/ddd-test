@@ -29,6 +29,10 @@ class Entity {
                 if (!($value instanceof UserValueObjects\password))
                    throw new Exceptions\PasswordNotValidException();
                 break;
+                   case 'password_reset_token':
+                if (!($value instanceof UserValueObjects\password_reset_token))
+                   throw new Exceptions\password_reset_tokenNotValidException();
+                break;
       }
       $this->$name = $value;
     }

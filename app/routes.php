@@ -16,6 +16,10 @@
 Route::match(array('get','post'),'/',array('as'=>'login','uses'=>'userController@show_login_page'));
 Route::match(array('get','post'),'/login',array('as'=>'login','uses'=>'userController@show_login_page'));
 Route::match(array('get','post'),'/process_login',array('as'=>'login_processLogin','uses'=>'userController@process_login_page'));
+Route::match(array('get','post'),'/forget_password',array('as'=>'forget_password','uses'=>'userController@show_forget_password_page'));
+Route::match(array('get','post'),'/forget_password/email/search',array('as'=>'search_user_email','uses'=>'userController@check_email_exist_by_forget_password'));
+Route::match(array('get','post'),'/forget_password/reset/{password_reset_token}',array('as'=>'reset_forget_password_section','uses'=>'userController@reset_forget_password_section'));
+Route::match(array('get','post'),'/forget_password/process',array('as'=>'process_password_reset','uses'=>'userController@process_password_reset'));
 Route::match(array('get','post'),'/logout',array('as'=>'signout','uses'=>'userController@logout'));
 
 

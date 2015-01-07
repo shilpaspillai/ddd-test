@@ -27,13 +27,10 @@
   
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo URL::to('resources/js/bootstrap.min.js');?>"></script>
-
-</head>
-<body>
-  
 @yield('content')
+@yield('forget_password')
+@yield('password_update')
         </div>
-
 </body>
 
 </html>
